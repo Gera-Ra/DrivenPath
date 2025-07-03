@@ -1,0 +1,323 @@
+[2025-07-01T22:34:04.436+0000] {local_task_job_runner.py:123} INFO - ::group::Pre task execution logs
+[2025-07-01T22:34:04.452+0000] {taskinstance.py:2612} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: extract_raw_data_pipeline.extract_raw_data scheduled__2025-07-01T07:58:00+00:00 [queued]>
+[2025-07-01T22:34:04.460+0000] {taskinstance.py:2612} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: extract_raw_data_pipeline.extract_raw_data scheduled__2025-07-01T07:58:00+00:00 [queued]>
+[2025-07-01T22:34:04.461+0000] {taskinstance.py:2865} INFO - Starting attempt 1 of 1
+[2025-07-01T22:34:04.478+0000] {taskinstance.py:2888} INFO - Executing <Task(PythonOperator): extract_raw_data> on 2025-07-01 07:58:00+00:00
+[2025-07-01T22:34:04.500+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:70: DeprecationWarning: This process (pid=75) is multi-threaded, use of fork() may lead to deadlocks in the child.
+  pid = os.fork()
+
+[2025-07-01T22:34:04.502+0000] {standard_task_runner.py:72} INFO - Started process 88 to run task
+[2025-07-01T22:34:04.503+0000] {standard_task_runner.py:104} INFO - Running: ['***', 'tasks', 'run', 'extract_raw_data_pipeline', 'extract_raw_data', 'scheduled__2025-07-01T07:58:00+00:00', '--job-id', '13', '--raw', '--subdir', 'DAGS_FOLDER/driven_data_pipeline.py', '--cfg-path', '/tmp/tmpxky32681']
+[2025-07-01T22:34:04.504+0000] {standard_task_runner.py:105} INFO - Job 13: Subtask extract_raw_data
+[2025-07-01T22:34:04.638+0000] {task_command.py:467} INFO - Running <TaskInstance: extract_raw_data_pipeline.extract_raw_data scheduled__2025-07-01T07:58:00+00:00 [running]> on host 47d5c056e34f
+[2025-07-01T22:34:04.719+0000] {taskinstance.py:3131} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='extract_raw_data_pipeline' AIRFLOW_CTX_TASK_ID='extract_raw_data' AIRFLOW_CTX_EXECUTION_DATE='2025-07-01T07:58:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2025-07-01T07:58:00+00:00'
+[2025-07-01T22:34:04.721+0000] {logging_mixin.py:190} INFO - Task instance is in running state
+[2025-07-01T22:34:04.722+0000] {logging_mixin.py:190} INFO -  Previous state of the Task instance: queued
+[2025-07-01T22:34:04.722+0000] {logging_mixin.py:190} INFO - Current task name:extract_raw_data state:running start_date:2025-07-01 22:34:04.454001+00:00
+[2025-07-01T22:34:04.722+0000] {logging_mixin.py:190} INFO - Dag name:extract_raw_data_pipeline and current dag run status:running
+[2025-07-01T22:34:04.723+0000] {taskinstance.py:731} INFO - ::endgroup::
+[2025-07-01T22:34:04.723+0000] {driven_data_pipeline.py:143} INFO - Started batch processing for 2025-07-01.
+[2025-07-01T22:34:04.725+0000] {driven_data_pipeline.py:34} INFO - Created synthetic data for MX country code.
+[2025-07-01T22:34:04.758+0000] {taskinstance.py:3310} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 767, in _execute_task
+    result = _execute_callable(context=context, **execute_callable_kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 733, in _execute_callable
+    return ExecutionCallableRunner(
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/utils/operator_helpers.py", line 252, in run
+    return self.func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/baseoperator.py", line 406, in wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/operators/python.py", line 238, in execute
+    return_value = self.execute_callable()
+                   ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/operators/python.py", line 256, in execute_callable
+    return runner.run(*self.op_args, **self.op_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/utils/operator_helpers.py", line 252, in run
+    return self.func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/airflow/dags/driven_data_pipeline.py", line 145, in save_raw_data
+    _write_to_csv()
+  File "/opt/airflow/dags/driven_data_pipeline.py", line 92, in _write_to_csv
+    with open("/opt/airflow/data/raw_data.csv", mode="a", encoding="utf-8", newline="") as file:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/opt/airflow/data/raw_data.csv'
+[2025-07-01T22:34:04.769+0000] {logging_mixin.py:190} INFO - Task instance in failure state
+[2025-07-01T22:34:04.769+0000] {logging_mixin.py:190} INFO - Task start:2025-07-01 22:34:04.454001+00:00 end:2025-07-01 22:34:04.768772+00:00 duration:0.314771
+[2025-07-01T22:34:04.770+0000] {logging_mixin.py:190} INFO - Task:<Task(PythonOperator): extract_raw_data> dag:<DAG: extract_raw_data_pipeline> dagrun:<DagRun extract_raw_data_pipeline @ 2025-07-01 07:58:00+00:00: scheduled__2025-07-01T07:58:00+00:00, state:running, queued_at: 2025-07-01 22:34:00.306708+00:00. externally triggered: False>
+[2025-07-01T22:34:04.770+0000] {logging_mixin.py:190} INFO - Failure caused by [Errno 2] No such file or directory: '/opt/***/data/raw_data.csv'
+[2025-07-01T22:34:04.771+0000] {taskinstance.py:1225} INFO - Marking task as FAILED. dag_id=extract_raw_data_pipeline, task_id=extract_raw_data, run_id=scheduled__2025-07-01T07:58:00+00:00, execution_date=20250701T075800, start_date=20250701T223404, end_date=20250701T223404
+[2025-07-01T22:34:04.788+0000] {taskinstance.py:340} INFO - ::group::Post task execution logs
+[2025-07-01T22:34:04.789+0000] {standard_task_runner.py:124} ERROR - Failed to execute job 13 for task extract_raw_data ([Errno 2] No such file or directory: '/opt/airflow/data/raw_data.csv'; 88)
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/task/task_runner/standard_task_runner.py", line 117, in _start_by_fork
+    ret = args.func(args, dag=self.dag)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/cli/cli_config.py", line 49, in command
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/utils/cli.py", line 115, in wrapper
+    return f(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/cli/commands/task_command.py", line 483, in task_run
+    task_return_code = _run_task_by_selected_method(args, _dag, ti)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/cli/commands/task_command.py", line 256, in _run_task_by_selected_method
+    return _run_raw_task(args, ti)
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/cli/commands/task_command.py", line 341, in _run_raw_task
+    return ti._run_raw_task(
+           ^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/utils/session.py", line 97, in wrapper
+    return func(*args, session=session, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 3004, in _run_raw_task
+    return _run_raw_task(
+           ^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 273, in _run_raw_task
+    TaskInstance._execute_task_with_callbacks(
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 3158, in _execute_task_with_callbacks
+    result = self._execute_task(context, task_orig)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 3182, in _execute_task
+    return _execute_task(self, context, task_orig)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 767, in _execute_task
+    result = _execute_callable(context=context, **execute_callable_kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 733, in _execute_callable
+    return ExecutionCallableRunner(
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/utils/operator_helpers.py", line 252, in run
+    return self.func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/baseoperator.py", line 406, in wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/operators/python.py", line 238, in execute
+    return_value = self.execute_callable()
+                   ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/operators/python.py", line 256, in execute_callable
+    return runner.run(*self.op_args, **self.op_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/utils/operator_helpers.py", line 252, in run
+    return self.func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/airflow/dags/driven_data_pipeline.py", line 145, in save_raw_data
+    _write_to_csv()
+  File "/opt/airflow/dags/driven_data_pipeline.py", line 92, in _write_to_csv
+    with open("/opt/airflow/data/raw_data.csv", mode="a", encoding="utf-8", newline="") as file:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/opt/airflow/data/raw_data.csv'
+[2025-07-01T22:34:04.838+0000] {local_task_job_runner.py:266} INFO - Task exited with return code 1
+[2025-07-01T22:34:04.864+0000] {taskinstance.py:3900} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2025-07-01T22:34:04.872+0000] {local_task_job_runner.py:245} INFO - ::endgroup::
+[2025-07-01T23:34:29.134+0000] {local_task_job_runner.py:123} INFO - ::group::Pre task execution logs
+[2025-07-01T23:34:29.152+0000] {taskinstance.py:2612} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: extract_raw_data_pipeline.extract_raw_data scheduled__2025-07-01T07:58:00+00:00 [queued]>
+[2025-07-01T23:34:29.159+0000] {taskinstance.py:2612} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: extract_raw_data_pipeline.extract_raw_data scheduled__2025-07-01T07:58:00+00:00 [queued]>
+[2025-07-01T23:34:29.160+0000] {taskinstance.py:2865} INFO - Starting attempt 1 of 1
+[2025-07-01T23:34:29.176+0000] {taskinstance.py:2888} INFO - Executing <Task(PythonOperator): extract_raw_data> on 2025-07-01 07:58:00+00:00
+[2025-07-01T23:34:29.184+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:70: DeprecationWarning: This process (pid=76) is multi-threaded, use of fork() may lead to deadlocks in the child.
+  pid = os.fork()
+
+[2025-07-01T23:34:29.187+0000] {standard_task_runner.py:72} INFO - Started process 85 to run task
+[2025-07-01T23:34:29.187+0000] {standard_task_runner.py:104} INFO - Running: ['***', 'tasks', 'run', 'extract_raw_data_pipeline', 'extract_raw_data', 'scheduled__2025-07-01T07:58:00+00:00', '--job-id', '5', '--raw', '--subdir', 'DAGS_FOLDER/driven_data_pipeline.py', '--cfg-path', '/tmp/tmp_9glml4i']
+[2025-07-01T23:34:29.189+0000] {standard_task_runner.py:105} INFO - Job 5: Subtask extract_raw_data
+[2025-07-01T23:34:29.256+0000] {task_command.py:467} INFO - Running <TaskInstance: extract_raw_data_pipeline.extract_raw_data scheduled__2025-07-01T07:58:00+00:00 [running]> on host a03092e219e5
+[2025-07-01T23:34:29.341+0000] {taskinstance.py:3131} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='extract_raw_data_pipeline' AIRFLOW_CTX_TASK_ID='extract_raw_data' AIRFLOW_CTX_EXECUTION_DATE='2025-07-01T07:58:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2025-07-01T07:58:00+00:00'
+[2025-07-01T23:34:29.342+0000] {taskinstance.py:731} INFO - ::endgroup::
+[2025-07-01T23:34:29.373+0000] {driven_data_pipeline.py:143} INFO - Started batch processing for 2025-07-01.
+[2025-07-01T23:34:29.374+0000] {driven_data_pipeline.py:34} INFO - Created synthetic data for MX country code.
+[2025-07-01T23:34:29.669+0000] {driven_data_pipeline.py:100} INFO - Written 1082 records to the CSV file.
+[2025-07-01T23:34:29.706+0000] {driven_data_pipeline.py:116} INFO - Added UUID to the dataset.
+[2025-07-01T23:34:29.736+0000] {driven_data_pipeline.py:135} INFO - Updated accessed timestamp.
+[2025-07-01T23:34:29.737+0000] {driven_data_pipeline.py:151} INFO - Finished batch processing 2025-07-01.
+[2025-07-01T23:34:29.738+0000] {python.py:240} INFO - Done. Returned value was: None
+[2025-07-01T23:34:29.748+0000] {taskinstance.py:340} INFO - ::group::Post task execution logs
+[2025-07-01T23:34:29.748+0000] {taskinstance.py:352} INFO - Marking task as SUCCESS. dag_id=extract_raw_data_pipeline, task_id=extract_raw_data, run_id=scheduled__2025-07-01T07:58:00+00:00, execution_date=20250701T075800, start_date=20250701T233429, end_date=20250701T233429
+[2025-07-01T23:34:29.805+0000] {local_task_job_runner.py:266} INFO - Task exited with return code 0
+[2025-07-01T23:34:29.823+0000] {taskinstance.py:3900} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2025-07-01T23:34:29.830+0000] {local_task_job_runner.py:245} INFO - ::endgroup::
+[2025-07-02T00:22:18.875+0000] {local_task_job_runner.py:123} INFO - ::group::Pre task execution logs
+[2025-07-02T00:22:18.893+0000] {taskinstance.py:2612} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: extract_raw_data_pipeline.extract_raw_data scheduled__2025-07-01T07:58:00+00:00 [queued]>
+[2025-07-02T00:22:18.902+0000] {taskinstance.py:2612} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: extract_raw_data_pipeline.extract_raw_data scheduled__2025-07-01T07:58:00+00:00 [queued]>
+[2025-07-02T00:22:18.903+0000] {taskinstance.py:2865} INFO - Starting attempt 1 of 1
+[2025-07-02T00:22:18.919+0000] {taskinstance.py:2888} INFO - Executing <Task(PythonOperator): extract_raw_data> on 2025-07-01 07:58:00+00:00
+[2025-07-02T00:22:18.925+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:70: DeprecationWarning: This process (pid=68) is multi-threaded, use of fork() may lead to deadlocks in the child.
+  pid = os.fork()
+
+[2025-07-02T00:22:18.927+0000] {standard_task_runner.py:104} INFO - Running: ['***', 'tasks', 'run', 'extract_raw_data_pipeline', 'extract_raw_data', 'scheduled__2025-07-01T07:58:00+00:00', '--job-id', '6', '--raw', '--subdir', 'DAGS_FOLDER/driven_data_pipeline.py', '--cfg-path', '/tmp/tmppuv01gae']
+[2025-07-02T00:22:18.928+0000] {standard_task_runner.py:72} INFO - Started process 79 to run task
+[2025-07-02T00:22:18.928+0000] {standard_task_runner.py:105} INFO - Job 6: Subtask extract_raw_data
+[2025-07-02T00:22:19.017+0000] {task_command.py:467} INFO - Running <TaskInstance: extract_raw_data_pipeline.extract_raw_data scheduled__2025-07-01T07:58:00+00:00 [running]> on host c67788e29347
+[2025-07-02T00:22:19.102+0000] {taskinstance.py:3131} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='extract_raw_data_pipeline' AIRFLOW_CTX_TASK_ID='extract_raw_data' AIRFLOW_CTX_EXECUTION_DATE='2025-07-01T07:58:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2025-07-01T07:58:00+00:00'
+[2025-07-02T00:22:19.104+0000] {taskinstance.py:731} INFO - ::endgroup::
+[2025-07-02T00:22:19.132+0000] {driven_data_pipeline.py:142} INFO - Started batch processing for 2025-07-02.
+[2025-07-02T00:22:19.132+0000] {driven_data_pipeline.py:34} INFO - Created synthetic data for MX country code.
+[2025-07-02T00:22:19.306+0000] {driven_data_pipeline.py:99} INFO - Written 489 records to the CSV file.
+[2025-07-02T00:22:19.323+0000] {taskinstance.py:3310} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 767, in _execute_task
+    result = _execute_callable(context=context, **execute_callable_kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 733, in _execute_callable
+    return ExecutionCallableRunner(
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/utils/operator_helpers.py", line 252, in run
+    return self.func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/baseoperator.py", line 406, in wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/operators/python.py", line 238, in execute
+    return_value = self.execute_callable()
+                   ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/operators/python.py", line 256, in execute_callable
+    return runner.run(*self.op_args, **self.op_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/utils/operator_helpers.py", line 252, in run
+    return self.func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/airflow/dags/driven_data_pipeline.py", line 146, in save_raw_data
+    _add_id()
+  File "/opt/airflow/dags/driven_data_pipeline.py", line 107, in _add_id
+    df = pl.read_csv("/opt/airflow/data/raw_data.csv")
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/polars/_utils/deprecation.py", line 128, in wrapper
+    return function(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/polars/_utils/deprecation.py", line 128, in wrapper
+    return function(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/polars/_utils/deprecation.py", line 128, in wrapper
+    return function(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/polars/io/csv/functions.py", line 549, in read_csv
+    df = _read_csv_impl(
+         ^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/polars/io/csv/functions.py", line 697, in _read_csv_impl
+    pydf = PyDataFrame.read_csv(
+           ^^^^^^^^^^^^^^^^^^^^^
+polars.exceptions.ComputeError: could not parse `"Circuito Jimínez 302 Edif. 057 , Depto. 908, San Alvaro los bajos, TSr(a). Andrea Tamez,sr(a).andreatamez,sr(a).andreatamez@yahoo.com,97643998616,1985-03-11,"Circuito Rojo 042 676` as dtype `str` at column 'address' (column number 6)
+
+The current offset in the file is 107 bytes.
+
+You might want to try:
+- increasing `infer_schema_length` (e.g. `infer_schema_length=10000`),
+- specifying correct dtype with the `schema_overrides` argument
+- setting `ignore_errors` to `True`,
+- adding `"Circuito Jimínez 302 Edif. 057 , Depto. 908, San Alvaro los bajos, TSr(a). Andrea Tamez,sr(a).andreatamez,sr(a).andreatamez@yahoo.com,97643998616,1985-03-11,"Circuito Rojo 042 676` to the `null_values` list.
+
+Original error: ```invalid csv file
+
+Field `"Circuito Jimínez 302 Edif. 057 , Depto. 908, San Alvaro los bajos, TSr(a). Andrea Tamez,sr(a).andreatamez,sr(a).andreatamez@yahoo.com,97643998616,1985-03-11,"Circuito Rojo 042 676` is not properly escaped.```
+[2025-07-02T00:22:19.334+0000] {taskinstance.py:1225} INFO - Marking task as FAILED. dag_id=extract_raw_data_pipeline, task_id=extract_raw_data, run_id=scheduled__2025-07-01T07:58:00+00:00, execution_date=20250701T075800, start_date=20250702T002218, end_date=20250702T002219
+[2025-07-02T00:22:19.347+0000] {taskinstance.py:340} INFO - ::group::Post task execution logs
+[2025-07-02T00:22:19.348+0000] {standard_task_runner.py:124} ERROR - Failed to execute job 6 for task extract_raw_data (could not parse `"Circuito Jimínez 302 Edif. 057 , Depto. 908, San Alvaro los bajos, TSr(a). Andrea Tamez,sr(a).andreatamez,sr(a).andreatamez@yahoo.com,97643998616,1985-03-11,"Circuito Rojo 042 676` as dtype `str` at column 'address' (column number 6)
+
+The current offset in the file is 107 bytes.
+
+You might want to try:
+- increasing `infer_schema_length` (e.g. `infer_schema_length=10000`),
+- specifying correct dtype with the `schema_overrides` argument
+- setting `ignore_errors` to `True`,
+- adding `"Circuito Jimínez 302 Edif. 057 , Depto. 908, San Alvaro los bajos, TSr(a). Andrea Tamez,sr(a).andreatamez,sr(a).andreatamez@yahoo.com,97643998616,1985-03-11,"Circuito Rojo 042 676` to the `null_values` list.
+
+Original error: ```invalid csv file
+
+Field `"Circuito Jimínez 302 Edif. 057 , Depto. 908, San Alvaro los bajos, TSr(a). Andrea Tamez,sr(a).andreatamez,sr(a).andreatamez@yahoo.com,97643998616,1985-03-11,"Circuito Rojo 042 676` is not properly escaped.```; 79)
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/task/task_runner/standard_task_runner.py", line 117, in _start_by_fork
+    ret = args.func(args, dag=self.dag)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/cli/cli_config.py", line 49, in command
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/utils/cli.py", line 115, in wrapper
+    return f(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/cli/commands/task_command.py", line 483, in task_run
+    task_return_code = _run_task_by_selected_method(args, _dag, ti)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/cli/commands/task_command.py", line 256, in _run_task_by_selected_method
+    return _run_raw_task(args, ti)
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/cli/commands/task_command.py", line 341, in _run_raw_task
+    return ti._run_raw_task(
+           ^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/utils/session.py", line 97, in wrapper
+    return func(*args, session=session, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 3004, in _run_raw_task
+    return _run_raw_task(
+           ^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 273, in _run_raw_task
+    TaskInstance._execute_task_with_callbacks(
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 3158, in _execute_task_with_callbacks
+    result = self._execute_task(context, task_orig)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 3182, in _execute_task
+    return _execute_task(self, context, task_orig)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 767, in _execute_task
+    result = _execute_callable(context=context, **execute_callable_kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 733, in _execute_callable
+    return ExecutionCallableRunner(
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/utils/operator_helpers.py", line 252, in run
+    return self.func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/baseoperator.py", line 406, in wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/operators/python.py", line 238, in execute
+    return_value = self.execute_callable()
+                   ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/operators/python.py", line 256, in execute_callable
+    return runner.run(*self.op_args, **self.op_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/utils/operator_helpers.py", line 252, in run
+    return self.func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/airflow/dags/driven_data_pipeline.py", line 146, in save_raw_data
+    _add_id()
+  File "/opt/airflow/dags/driven_data_pipeline.py", line 107, in _add_id
+    df = pl.read_csv("/opt/airflow/data/raw_data.csv")
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/polars/_utils/deprecation.py", line 128, in wrapper
+    return function(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/polars/_utils/deprecation.py", line 128, in wrapper
+    return function(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/polars/_utils/deprecation.py", line 128, in wrapper
+    return function(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/polars/io/csv/functions.py", line 549, in read_csv
+    df = _read_csv_impl(
+         ^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/polars/io/csv/functions.py", line 697, in _read_csv_impl
+    pydf = PyDataFrame.read_csv(
+           ^^^^^^^^^^^^^^^^^^^^^
+polars.exceptions.ComputeError: could not parse `"Circuito Jimínez 302 Edif. 057 , Depto. 908, San Alvaro los bajos, TSr(a). Andrea Tamez,sr(a).andreatamez,sr(a).andreatamez@yahoo.com,97643998616,1985-03-11,"Circuito Rojo 042 676` as dtype `str` at column 'address' (column number 6)
+
+The current offset in the file is 107 bytes.
+
+You might want to try:
+- increasing `infer_schema_length` (e.g. `infer_schema_length=10000`),
+- specifying correct dtype with the `schema_overrides` argument
+- setting `ignore_errors` to `True`,
+- adding `"Circuito Jimínez 302 Edif. 057 , Depto. 908, San Alvaro los bajos, TSr(a). Andrea Tamez,sr(a).andreatamez,sr(a).andreatamez@yahoo.com,97643998616,1985-03-11,"Circuito Rojo 042 676` to the `null_values` list.
+
+Original error: ```invalid csv file
+
+Field `"Circuito Jimínez 302 Edif. 057 , Depto. 908, San Alvaro los bajos, TSr(a). Andrea Tamez,sr(a).andreatamez,sr(a).andreatamez@yahoo.com,97643998616,1985-03-11,"Circuito Rojo 042 676` is not properly escaped.```
+[2025-07-02T00:22:19.384+0000] {local_task_job_runner.py:266} INFO - Task exited with return code 1
+[2025-07-02T00:22:19.403+0000] {taskinstance.py:3900} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2025-07-02T00:22:19.409+0000] {local_task_job_runner.py:245} INFO - ::endgroup::

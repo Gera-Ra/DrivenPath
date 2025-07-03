@@ -1,0 +1,22 @@
+[2025-07-03T04:14:58.782+0000] {local_task_job_runner.py:123} INFO - ::group::Pre task execution logs
+[2025-07-03T04:14:58.800+0000] {taskinstance.py:2612} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: extract_raw_data_pipeline.drop_raw_table manual__2025-07-03T04:14:57.198327+00:00 [queued]>
+[2025-07-03T04:14:58.809+0000] {taskinstance.py:2612} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: extract_raw_data_pipeline.drop_raw_table manual__2025-07-03T04:14:57.198327+00:00 [queued]>
+[2025-07-03T04:14:58.810+0000] {taskinstance.py:2865} INFO - Starting attempt 1 of 1
+[2025-07-03T04:14:58.828+0000] {taskinstance.py:2888} INFO - Executing <Task(SQLExecuteQueryOperator): drop_raw_table> on 2025-07-03 04:14:57.198327+00:00
+[2025-07-03T04:14:58.835+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:70: DeprecationWarning: This process (pid=247) is multi-threaded, use of fork() may lead to deadlocks in the child.
+  pid = os.fork()
+
+[2025-07-03T04:14:58.837+0000] {standard_task_runner.py:72} INFO - Started process 252 to run task
+[2025-07-03T04:14:58.837+0000] {standard_task_runner.py:104} INFO - Running: ['***', 'tasks', 'run', 'extract_raw_data_pipeline', 'drop_raw_table', 'manual__2025-07-03T04:14:57.198327+00:00', '--job-id', '15', '--raw', '--subdir', 'DAGS_FOLDER/driven_data_pipeline.py', '--cfg-path', '/tmp/tmpc97njasr']
+[2025-07-03T04:14:58.838+0000] {standard_task_runner.py:105} INFO - Job 15: Subtask drop_raw_table
+[2025-07-03T04:14:58.912+0000] {task_command.py:467} INFO - Running <TaskInstance: extract_raw_data_pipeline.drop_raw_table manual__2025-07-03T04:14:57.198327+00:00 [running]> on host 6000e8bcb2e1
+[2025-07-03T04:14:59.011+0000] {taskinstance.py:3131} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='extract_raw_data_pipeline' AIRFLOW_CTX_TASK_ID='drop_raw_table' AIRFLOW_CTX_EXECUTION_DATE='2025-07-03T04:14:57.198327+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2025-07-03T04:14:57.198327+00:00'
+[2025-07-03T04:14:59.013+0000] {taskinstance.py:731} INFO - ::endgroup::
+[2025-07-03T04:14:59.030+0000] {sql.py:266} INFO - Executing: DROP TABLE IF EXISTS driven_raw.raw_batch_data;
+[2025-07-03T04:14:59.041+0000] {base.py:84} INFO - Retrieving connection 'postgres_conn'
+[2025-07-03T04:14:59.054+0000] {base.py:84} INFO - Retrieving connection 'postgres_conn'
+[2025-07-03T04:14:59.058+0000] {sql.py:509} INFO - Running statement: DROP TABLE IF EXISTS driven_raw.raw_batch_data;, parameters: None
+[2025-07-03T04:14:59.075+0000] {taskinstance.py:340} INFO - ::group::Post task execution logs
+[2025-07-03T04:14:59.076+0000] {taskinstance.py:352} INFO - Marking task as SUCCESS. dag_id=extract_raw_data_pipeline, task_id=drop_raw_table, run_id=manual__2025-07-03T04:14:57.198327+00:00, execution_date=20250703T041457, start_date=20250703T041458, end_date=20250703T041459
+[2025-07-03T04:14:59.134+0000] {local_task_job_runner.py:266} INFO - Task exited with return code 0
+[2025-07-03T04:14:59.145+0000] {local_task_job_runner.py:245} INFO - ::endgroup::
